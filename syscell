@@ -1,0 +1,107 @@
+ To implement the following system calls using C program:
+ 1.ls
+ 2.cat 
+3.pwd 
+4.clear
+ 5.ps 
+6.date
+ 7.cal
+ 8.man 
+9.cp
+ 10.rm
+Description on Exec():
+Exec():
+Algorithm:
+
+I.	Start
+II.	Display choices menu
+III.	Get input
+IV.	Using execlp execute the desired option by user
+V.	Get necessary option/input/arguments 
+VI.	Stop
+
+Code:
+
+#include <unistd.h>
+
+int main(void) {
+char *programName = "ls"; char *arg1 = "-lh";
+char *arg2 = "/home";
+
+execlp(programName, programName, arg1, arg2, NULL);
+
+return 0;
+}
+Output:
+
+
+
+Code 2:
+
+#include<stdio.h> #include<unistd.h>
+#include<sys/wait.h> int main(){
+int choice;
+char str[50],str1[50],str2[50];
+
+
+
+
+printf("Enter your choice \n1.ls \n2.cat \n3.pwd \n4.clear \n5.ps \n6.date \n7.cal \n8.man \n9.cp \n10.rm \n"); scanf("%d",&choice);
+switch(choice)
+{
+case 1:
+printf("Enter the option : "); scanf("%s",str);
+printf("Enter the filename 1 : "); scanf("%s",str1);
+printf("Enter the filename 2 : ");
+scanf("%s",str2); execl("/bin/ls","ls",str,str1,str2,NULL); break;
+
+case 2:
+
+printf("Enter the filename 1 : "); scanf("%s",str1);
+printf("Enter the filename 2 : ");
+scanf("%s",str2); execlp("cat","cat",str1,str2,NULL); break;
+
+case 3:
+
+execlp("pwd","pwd",NULL); break;
+
+case 4:
+execlp("clear","clear",NULL); break;
+
+case 5:
+
+execlp("ps","ps",NULL); break;
+
+case 6:
+
+execlp("date","date",NULL); break;
+
+case 7:
+
+execlp("cal","cal",NULL); break;
+
+
+case 8:
+
+printf("Enter the option : ");
+scanf("%s",str); execlp("man","man",str,NULL); break;
+
+case 9:
+
+printf("Enter the filename 1 : "); scanf("%s",str1);
+printf("Enter the filename 2 : ");
+scanf("%s",str2); execlp("cp","cp",str1,str2,NULL); break;
+
+case 10:
+
+printf("Enter the filename : "); scanf("%s",str1);
+execlp("rm","rm",str1,NULL); break;
+
+default:
+
+printf("Invalid choice");
+
+
+}
+
+}
